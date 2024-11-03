@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 public class Idioms extends AppCompatActivity {
 
     EditText editText;
+    private String apiKey;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Idioms extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView.setMovementMethod(new ScrollingMovementMethod());
         editText = findViewById(R.id.promptEdit);
+        apiKey = BuildConfig.GEMINI_API_KEY;
     }
 
     public void buttonCallGeminiAPI(View view){
@@ -47,7 +49,7 @@ public class Idioms extends AppCompatActivity {
         GenerativeModel gm =
                 new GenerativeModel(
                         /* modelName */ "gemini-1.5-flash",
-                        /* apiKey */ "AIzaSyCRnlHvyDipTw8HxfW6SdUIiVoHN2ugK_I");
+                        /* apiKey */ apiKey);
         GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
         Content content =

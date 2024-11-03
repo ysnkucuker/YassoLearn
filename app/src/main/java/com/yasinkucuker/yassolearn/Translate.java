@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 
 public class Translate extends AppCompatActivity {
 
+    private String apiKey;
     EditText editText;
     TextView textView;
     @SuppressLint("MissingInflatedId")
@@ -43,6 +44,7 @@ public class Translate extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView.setMovementMethod(new ScrollingMovementMethod());
         editText = findViewById(R.id.promptEdit);
+        apiKey = BuildConfig.GEMINI_API_KEY;
     }
 
     public void buttonCallGeminiAPI(View view){
@@ -51,7 +53,7 @@ public class Translate extends AppCompatActivity {
                 new GenerativeModel(
                         /* modelName */ "gemini-1.5-flash",
 
-                        /* apiKey */ "AIzaSyCRnlHvyDipTw8HxfW6SdUIiVoHN2ugK_I");
+                        /* apiKey */ apiKey);
         GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
         Content content =

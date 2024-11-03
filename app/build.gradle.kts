@@ -1,7 +1,11 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
-
+val localProperties = Properties()
+localProperties.load(FileInputStream(rootProject.file("local.properties")))
 android {
     namespace = "com.yasinkucuker.yassolearn"
     compileSdk = 34
@@ -30,6 +34,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

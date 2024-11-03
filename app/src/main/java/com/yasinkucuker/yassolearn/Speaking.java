@@ -33,6 +33,7 @@ import java.util.concurrent.Executors;
 
 public class Speaking extends AppCompatActivity {
 
+    private String apiKey;
     private EditText editTextSpeech;
     private Button buttonRecord;
     private Button buttonPlay;
@@ -58,6 +59,7 @@ public class Speaking extends AppCompatActivity {
         editTextSpeech = findViewById(R.id.editTextSpeech);
         buttonRecord = findViewById(R.id.buttonRecord);
         buttonPlay = findViewById(R.id.buttonPlay);
+        apiKey = BuildConfig.GEMINI_API_KEY;
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -126,7 +128,7 @@ public class Speaking extends AppCompatActivity {
                         new GenerativeModel(
                                 /* modelName */ "gemini-1.5-flash",
 
-                                /* apiKey */ "AIzaSyCRnlHvyDipTw8HxfW6SdUIiVoHN2ugK_I");
+                                /* apiKey */ apiKey);
                 GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
                 Content content =

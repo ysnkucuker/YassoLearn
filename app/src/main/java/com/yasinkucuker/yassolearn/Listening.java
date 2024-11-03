@@ -33,6 +33,7 @@ import java.util.concurrent.Executors;
 
 public class Listening extends AppCompatActivity {
 
+    private String apiKey;
     EditText editText;
     TextView textView;
 
@@ -53,6 +54,7 @@ public class Listening extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView.setMovementMethod(new ScrollingMovementMethod());
         editText = findViewById(R.id.promptEdit);
+        apiKey = BuildConfig.GEMINI_API_KEY;
 
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
@@ -69,7 +71,7 @@ public class Listening extends AppCompatActivity {
         GenerativeModel gm =
                 new GenerativeModel(
                         /* modelName */ "gemini-1.5-flash",
-                        /* apiKey */ "AIzaSyCRnlHvyDipTw8HxfW6SdUIiVoHN2ugK_I");
+                        /* apiKey */ apiKey);
         GenerativeModelFutures model = GenerativeModelFutures.from(gm);
 
         Content content =
